@@ -1,0 +1,339 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Legacy Educação • Inforkids — Em construção</title>
+
+  <!-- Tailwind via CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&family=Raleway:wght@400;500;600;700&family=Bubblegum+Sans&display=swap" rel="stylesheet">
+
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            display: ['Fredoka', 'system-ui', 'sans-serif'],
+            body: ['Raleway', 'system-ui', 'sans-serif'],
+            fun: ['Bubblegum Sans', 'cursive']
+          },
+          dropShadow: {
+            glow: '0 0 12px rgba(99,102,241,.45)'
+          }
+        }
+      }
+    }
+  </script>
+
+  <style>
+    /* Fundo sutil com padrões geométricos */
+    .bg-candy {
+      background:
+        radial-gradient(1200px 600px at 110% -10%, rgba(59,130,246,.08), transparent 60%),
+        radial-gradient(900px 500px at -10% 110%, rgba(168,85,247,.08), transparent 60%),
+        linear-gradient(180deg, #ffffff, #f7f7ff 35%, #fff9f2 100%);
+    }
+
+    /* Partículas */
+    .particle {
+      position: absolute; border-radius: 9999px; opacity: .65;
+      width: var(--size); height: var(--size);
+      left: var(--x); top: var(--y);
+      background: var(--color);
+      filter: blur(0.3px);
+      animation: float var(--duration) ease-in-out infinite;
+      animation-delay: var(--delay);
+    }
+    @keyframes float {
+      0%   { transform: translate(0,0) scale(1); opacity: .35 }
+      50%  { transform: translate(var(--dx),var(--dy)) scale(1.06); opacity: .9 }
+      100% { transform: translate(0,0) scale(1); opacity: .35 }
+    }
+
+    /* Pilha de imagens/cards */
+    .stack { transform-style: preserve-3d; perspective: 1000px; }
+    .stack-card {
+      transition: transform .5s ease, box-shadow .3s ease, filter .3s ease;
+      transform: rotate(var(--r, 0deg)) translateZ(var(--z, 0px));
+    }
+    .stack-card:hover { transform: rotate(var(--r, 0deg)) translateZ(32px) scale(1.02); filter: saturate(1.05); }
+    .stack:hover .stack-card:nth-child(2) { transform: rotate(-3deg) translateY(-6px) translateX(-6px) translateZ(18px); }
+    .stack:hover .stack-card:nth-child(3) { transform: rotate(4deg) translateY(6px) translateX(6px) translateZ(12px); }
+
+    /* Elementos “blocos de código” */
+    .code-block {
+      --b:#e5e7eb; --c:#111827;
+      box-shadow: 0 8px 20px rgba(17,24,39,.06), inset 0 0 0 1px var(--b);
+      background:
+        radial-gradient(circle at 12px 12px, #22d3ee 2px, transparent 3px) top 10px left 10px / 26px 26px no-repeat,
+        radial-gradient(circle at 12px 12px, #fb7185 2px, transparent 3px) top 10px left 36px / 26px 26px no-repeat,
+        radial-gradient(circle at 12px 12px, #a78bfa 2px, transparent 3px) top 10px left 62px / 26px 26px no-repeat,
+        #fff;
+    }
+
+    /* Micro animações */
+    .wiggle { animation: wiggle 1.4s ease-in-out infinite; }
+    @keyframes wiggle { 0%,100%{ transform: rotate(-2deg) } 50%{ transform: rotate(2deg) } }
+
+    /* Respeita redução de movimento */
+    @media (prefers-reduced-motion: reduce) {
+      .particle, .wiggle, .stack-card, .stack:hover .stack-card { animation: none !important; transition: none !important; }
+    }
+  </style>
+</head>
+
+<body class="bg-candy antialiased text-slate-700 selection:bg-indigo-200 selection:text-indigo-900">
+
+  <!-- partículas -->
+  <div id="particles" aria-hidden="true" class="pointer-events-none fixed inset-0 -z-10"></div>
+
+  <!-- Header -->
+  <header class="max-w-7xl mx-auto px-6 pt-6">
+    <div class="flex items-center justify-between">
+      <div class="flex items-center gap-3">
+        <div class="w-10 h-10 rounded-2xl bg-indigo-500/90 grid place-items-center text-white drop-shadow-glow">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M7 10h10M9 14h6" stroke="white" stroke-width="2" stroke-linecap="round"/><rect x="3" y="4" width="18" height="16" rx="5" stroke="white" stroke-width="2"/></svg>
+        </div>
+        <div>
+          <p class="font-display text-lg leading-5 text-slate-900">Legacy Educação</p>
+          <p class="text-xs uppercase tracking-widest text-indigo-600">Plataforma Inforkids</p>
+        </div>
+      </div>
+
+      <span class="inline-flex items-center gap-2 rounded-full bg-yellow-100 text-yellow-800 px-3 py-1 text-xs font-semibold">
+        <span class="w-2 h-2 rounded-full bg-yellow-400 animate-pulse"></span>
+        Em construção
+      </span>
+    </div>
+  </header>
+
+  <!-- Hero -->
+  <main class="max-w-7xl mx-auto px-6 py-12 lg:py-20">
+    <section class="grid lg:grid-cols-2 gap-10 items-center">
+      <!-- Texto / Copy -->
+      <div class="relative">
+        <span class="inline-flex items-center gap-2 rounded-full bg-indigo-100 text-indigo-700 px-3 py-1 text-xs font-semibold mb-4">
+          <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none"><path d="M4 12h5l2 3 3-6 2 3h4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          Aprender fazendo • Robótica • Programação em blocos
+        </span>
+
+        <h1 class="font-display text-4xl sm:text-5xl lg:text-6xl text-slate-900 leading-tight">
+          Autonomia para mentes curiosas.<br>
+          <span class="text-transparent bg-clip-text bg-gradient-to-r from-indigo-600 via-fuchsia-600 to-orange-500">Tecnologia que brinca e ensina.</span>
+        </h1>
+
+        <p class="mt-5 text-lg leading-relaxed">
+          A <strong>Legacy Educação</strong> na <strong>Inforkids</strong> combina informática criativa, robótica e programação
+          por <em>blocos visuais</em> para transformar curiosidade em projetos do mundo real.
+          Nossa missão é desenvolver autonomia, pensamento computacional e colaboração — de forma didática, colorida e divertida.
+        </p>
+
+        <div class="mt-6 grid sm:grid-cols-[auto_1fr] gap-3 items-center">
+          <div class="wiggle inline-flex items-center gap-2 rounded-xl bg-orange-100 text-orange-800 px-3 py-1 text-sm font-semibold shadow-sm">
+            <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none"><path d="M12 2v6m0 8v6M2 12h6m8 0h6" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+            Voltamos em breve com novidades!
+          </div>
+
+          <!-- Captura de e-mail (local only) -->
+          <!-- <form id="notify" class="flex rounded-2xl overflow-hidden ring-1 ring-slate-200 bg-white shadow-sm focus-within:ring-indigo-400 transition">
+            <input required name="email" type="email" placeholder="Seu e‑mail para receber o aviso"
+                   class="w-full px-4 py-3 outline-none placeholder-slate-400 text-slate-700" />
+            <button class="px-4 py-3 bg-indigo-600 text-white font-semibold hover:bg-indigo-700 transition">
+              Avisar-me
+            </button>
+          </form> -->
+        </div>
+
+        <!-- “Algoritmo” em blocos -->
+        <div class="mt-10 flex flex-wrap items-center gap-2">
+          <div class="code-block rounded-xl px-4 py-3 text-sm font-semibold text-slate-800">Explorar</div>
+          <div class="text-slate-400">→</div>
+          <div class="code-block rounded-xl px-4 py-3 text-sm font-semibold text-slate-800">Montar blocos</div>
+          <div class="text-slate-400">→</div>
+          <div class="code-block rounded-xl px-4 py-3 text-sm font-semibold text-slate-800">Testar &amp; depurar</div>
+          <div class="text-slate-400">→</div>
+          <div class="code-block rounded-xl px-4 py-3 text-sm font-semibold text-slate-800">Robô em ação</div>
+          <div class="text-slate-400">→</div>
+          <div class="code-block rounded-xl px-4 py-3 text-sm font-semibold text-slate-800">Compartilhar</div>
+        </div>
+
+        <!-- Pílulas -->
+        <div class="mt-6 flex flex-wrap gap-2">
+          <span class="px-3 py-1 rounded-full bg-fuchsia-100 text-fuchsia-800 text-xs font-semibold">Metodologia lúdica</span>
+          <span class="px-3 py-1 rounded-full bg-cyan-100 text-cyan-800 text-xs font-semibold">Maker &amp; projetos</span>
+          <span class="px-3 py-1 rounded-full bg-lime-100 text-lime-800 text-xs font-semibold">Aprender com autonomia</span>
+          <span class="px-3 py-1 rounded-full bg-amber-100 text-amber-800 text-xs font-semibold">Pensamento lógico</span>
+        </div>
+      </div>
+
+      <!-- Ilustração / pilhas -->
+      <div class="relative">
+        <div class="absolute -inset-6 -z-10 opacity-60 blur-2xl bg-gradient-to-tr from-indigo-200 via-fuchsia-200 to-amber-200 rounded-[2rem]"></div>
+
+        <div class="stack grid place-items-center gap-4">
+          <!-- Card 1 -->
+          <figure class="stack-card relative w-full max-w-xl rounded-3xl p-6 bg-white shadow-xl ring-1 ring-slate-200" style="--r:-2deg; --z:22px">
+            <div class="flex items-center gap-4">
+              <div class="w-14 h-14 rounded-2xl bg-indigo-500/90 grid place-items-center text-white drop-shadow-glow">
+                <!-- mascote simples -->
+                <svg width="28" height="28" viewBox="0 0 24 24" fill="none">
+                  <circle cx="12" cy="12" r="8" fill="white" opacity=".25"/>
+                  <circle cx="12" cy="12" r="6" stroke="white" stroke-width="2"/>
+                  <path d="M9 13c1.2 1.2 4.8 1.2 6 0" stroke="white" stroke-width="2" stroke-linecap="round"/>
+                  <circle cx="9" cy="10" r="1" fill="white"/><circle cx="15" cy="10" r="1" fill="white"/>
+                </svg>
+              </div>
+              <div>
+                <figcaption class="font-display text-xl text-slate-900">Laboratórios criativos</figcaption>
+                <p class="text-sm text-slate-500">Ambientes para experimentar, errar, ajustar e vencer.</p>
+              </div>
+            </div>
+            <div class="mt-4 grid grid-cols-3 gap-3">
+              <!-- imagens dos alunos -->
+              <img src="boy.png" alt="Menino aprendendo" class="aspect-[4/3] rounded-2xl object-cover ring-1 ring-indigo-100 shadow-sm">
+              <img src="girl.png" alt="Menina aprendendo" class="aspect-[4/3] rounded-2xl object-cover ring-1 ring-fuchsia-100 shadow-sm">
+              <img src="robots.png" alt="Menina aprendendo" class="aspect-[4/3] rounded-2xl object-cover ring-1 ring-amber-100 shadow-sm">
+             \
+            </div>
+          </figure>
+
+          <!-- Card 2 -->
+          <figure class="stack-card relative w-full max-w-xl rounded-3xl p-6 bg-white shadow-xl ring-1 ring-slate-200" style="--r:3deg; --z:14px">
+            <figcaption class="font-display text-xl text-slate-900 mb-2">Programação em blocos</figcaption>
+            <div class="grid grid-cols-5 gap-2">
+              <div class="rounded-xl px-3 py-2 text-xs font-semibold text-white bg-indigo-500/90 shadow">iniciar</div>
+              <div class="rounded-xl px-3 py-2 text-xs font-semibold text-indigo-800 bg-indigo-100 shadow-inner">mover 10</div>
+              <div class="rounded-xl px-3 py-2 text-xs font-semibold text-fuchsia-800 bg-fuchsia-100 shadow-inner">virar 15°</div>
+              <div class="rounded-xl px-3 py-2 text-xs font-semibold text-emerald-800 bg-emerald-100 shadow-inner">repetir 5×</div>
+              <div class="rounded-xl px-3 py-2 text-xs font-semibold text-orange-800 bg-orange-100 shadow-inner">tocar som</div>
+            </div>
+          </figure>
+
+          <!-- Card 3 -->
+          <figure class="stack-card relative w-full max-w-xl rounded-3xl p-6 bg-white shadow-xl ring-1 ring-slate-200" style="--r:-1deg; --z:8px">
+            <figcaption class="font-display text-xl text-slate-900">Robótica amigável</figcaption>
+            <p class="text-sm text-slate-500">Motores, sensores e muita imaginação guiada por algoritmos simples.</p>
+            <div class="mt-3 flex gap-3">
+              <div class="h-24 w-24 rounded-2xl bg-gradient-to-tr from-emerald-100 to-emerald-50 ring-1 ring-emerald-100"></div>
+              <div class="h-24 w-24 rounded-2xl bg-gradient-to-tr from-cyan-100 to-cyan-50 ring-1 ring-cyan-100"></div>
+              <div class="h-24 w-24 rounded-2xl bg-gradient-to-tr from-rose-100 to-rose-50 ring-1 ring-rose-100"></div>
+            </div>
+          </figure>
+        </div>
+      </div>
+    </section>
+
+    <!-- Pilares -->
+    <section class="mt-16 lg:mt-24">
+      <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-5">
+        <div class="rounded-3xl p-6 bg-white/80 backdrop-blur shadow ring-1 ring-slate-200 hover:-translate-y-1 transition">
+          <div class="w-10 h-10 rounded-xl grid place-items-center bg-indigo-100 text-indigo-700 mb-3">
+            <svg class="w-5 h-5" viewBox="0 0 24 24" fill="none"><path d="M12 3l7 4v10l-7 4-7-4V7l7-4z" stroke="currentColor" stroke-width="2"/><path d="M9 12h6" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+          </div>
+          <h3 class="font-display text-lg text-slate-900">Autonomia</h3>
+          <p class="text-sm mt-1 text-slate-600">Trilhas guiadas para a criança aprender a aprender.</p>
+        </div>
+        <div class="rounded-3xl p-6 bg-white/80 backdrop-blur shadow ring-1 ring-slate-200 hover:-translate-y-1 transition">
+          <div class="w-10 h-10 rounded-xl grid place-items-center bg-fuchsia-100 text-fuchsia-700 mb-3">
+            <svg class="w-5 h-5" viewBox="0 0 24 24" fill="none"><path d="M4 7h16M7 12h10M9 17h6" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+          </div>
+          <h3 class="font-display text-lg text-slate-900">Didática leve</h3>
+          <p class="text-sm mt-1 text-slate-600">Conteúdos interativos e divertidos.</p>
+        </div>
+        <div class="rounded-3xl p-6 bg-white/80 backdrop-blur shadow ring-1 ring-slate-200 hover:-translate-y-1 transition">
+          <div class="w-10 h-10 rounded-xl grid place-items-center bg-emerald-100 text-emerald-700 mb-3">
+            <svg class="w-5 h-5" viewBox="0 0 24 24" fill="none"><path d="M8 21V9l4-6 4 6v12" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+          </div>
+          <h3 class="font-display text-lg text-slate-900">Projeto mão na massa</h3>
+          <p class="text-sm mt-1 text-slate-600">Do algoritmo à execução com kits de robótica.</p>
+        </div>
+        <div class="rounded-3xl p-6 bg-white/80 backdrop-blur shadow ring-1 ring-slate-200 hover:-translate-y-1 transition">
+          <div class="w-10 h-10 rounded-xl grid place-items-center bg-amber-100 text-amber-700 mb-3">
+            <svg class="w-5 h-5" viewBox="0 0 24 24" fill="none"><path d="M12 6v12M6 12h12" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+          </div>
+          <h3 class="font-display text-lg text-slate-900">Tecnologia humana</h3>
+          <p class="text-sm mt-1 text-slate-600">Aprender com respeito e ética ao ritmo e muita diversão.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Rodapé curto -->
+    <footer class="mt-16 lg:mt-24">
+      <div class="rounded-3xl p-6 md:p-8 bg-gradient-to-r from-indigo-50 via-violet-50 to-orange-50 ring-1 ring-slate-200">
+        <div class="md:flex md:items-center md:justify-between">
+          <div>
+            <h4 class="font-display text-2xl text-slate-900">Legacy Educação — Inforkids</h4>
+            <p class="mt-1 text-sm text-slate-600">
+              Estamos ajustando os últimos detalhes para abrir novas turmas e lançar experiências
+              interativas inéditas. <strong>Fique de olho!</strong>
+            </p>
+          </div>
+          <div class="mt-4 md:mt-0 flex items-center gap-3">
+            <span class="px-3 py-1 rounded-full bg-slate-900 text-white text-xs font-semibold">Em construção</span>
+            <a href="#" class="text-indigo-600 font-semibold hover:underline">Política de privacidade</a>
+          </div>
+        </div>
+      </div>
+
+      <p class="text-center text-xs text-slate-400 mt-6">
+        © <span id="year"></span> Legacy Educação • Inforkids. Todos os direitos reservados.
+      </p>
+    </footer>
+  </main>
+
+  <script>
+    // Ano atual
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    // Partículas geradas dinamicamente
+    (function () {
+      const wrap = document.getElementById('particles');
+      const colors = ['#6366F1','#A78BFA','#F59E0B','#10B981','#06B6D4','#F472B6'];
+      const count = Math.min(80, Math.floor(window.innerWidth / 16));
+
+      for (let i = 0; i < count; i++) {
+        const s = document.createElement('span');
+        const size = Math.random() * 6 + 3; // 3–9px
+        const x = Math.random() * 100, y = Math.random() * 100;
+        const dx = (Math.random() * 60 - 30) + 'px', dy = (Math.random() * 60 - 30) + 'px';
+
+        s.className = 'particle';
+        s.style.setProperty('--size', size + 'px');
+        s.style.setProperty('--x', x + '%');
+        s.style.setProperty('--y', y + '%');
+        s.style.setProperty('--dx', dx);
+        s.style.setProperty('--dy', dy);
+        s.style.setProperty('--duration', (8 + Math.random() * 8) + 's');
+        s.style.setProperty('--delay', (Math.random() * 10) + 's');
+        s.style.setProperty('--color', colors[Math.floor(Math.random()*colors.length)]);
+        wrap.appendChild(s);
+      }
+    })();
+
+    // Captura de e-mail: guarda localmente e mostra feedback
+    document.getElementById('notify').addEventListener('submit', function (e) {
+      e.preventDefault();
+      const email = new FormData(this).get('email') || '';
+      if (email) {
+        try {
+          const key = 'legacy-inforkids-waitlist';
+          const list = JSON.parse(localStorage.getItem(key) || '[]');
+          if (!list.includes(email)) list.push(email);
+          localStorage.setItem(key, JSON.stringify(list));
+        } catch {}
+        this.innerHTML = `
+          <div class="flex items-center gap-2 px-4 py-3">
+            <svg class="w-5 h-5 text-emerald-600" viewBox="0 0 24 24" fill="none"><path d="M5 12l4 4L19 7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            <span class="font-medium text-slate-700">Obrigado! Vamos te avisar assim que estivermos prontos 🚀</span>
+          </div>`;
+      }
+    }, { passive: false });
+  </script>
+</body>
+</html>
+
