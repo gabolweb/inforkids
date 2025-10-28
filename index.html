@@ -1,5 +1,6 @@
 <!doctype html>
 <html lang="pt-BR">
+
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -11,7 +12,9 @@
   <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&family=Raleway:wght@400;500;600;700&family=Bubblegum+Sans&display=swap" rel="stylesheet">
+  <link
+    href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&family=Raleway:wght@400;500;600;700&family=Bubblegum+Sans&display=swap"
+    rel="stylesheet">
 
   <script>
     tailwind.config = {
@@ -23,7 +26,8 @@
             fun: ['Bubblegum Sans', 'cursive']
           },
           dropShadow: {
-            glow: '0 0 12px rgba(99,102,241,.45)'
+            glow: '0 0 16px rgba(99,102,241,.5)',
+            'glow-lg': '0 0 24px rgba(99,102,241,.4)'
           }
         }
       }
@@ -34,55 +38,105 @@
     /* Fundo sutil com padrões geométricos */
     .bg-candy {
       background:
-        radial-gradient(1200px 600px at 110% -10%, rgba(59,130,246,.08), transparent 60%),
-        radial-gradient(900px 500px at -10% 110%, rgba(168,85,247,.08), transparent 60%),
-        linear-gradient(180deg, #ffffff, #f7f7ff 35%, #fff9f2 100%);
+        radial-gradient(1400px 700px at 110% -10%, rgba(59, 130, 246, .1), transparent 65%),
+        radial-gradient(1000px 600px at -10% 110%, rgba(168, 85, 247, .1), transparent 65%),
+        linear-gradient(180deg, #ffffff, #f8f8ff 40%, #fffaf3 100%);
     }
 
     /* Partículas */
     .particle {
-      position: absolute; border-radius: 9999px; opacity: .65;
-      width: var(--size); height: var(--size);
-      left: var(--x); top: var(--y);
+      position: absolute;
+      border-radius: 9999px;
+      opacity: .7;
+      width: var(--size);
+      height: var(--size);
+      left: var(--x);
+      top: var(--y);
       background: var(--color);
-      filter: blur(0.3px);
+      filter: blur(0.4px);
       animation: float var(--duration) ease-in-out infinite;
       animation-delay: var(--delay);
     }
+
     @keyframes float {
-      0%   { transform: translate(0,0) scale(1); opacity: .35 }
-      50%  { transform: translate(var(--dx),var(--dy)) scale(1.06); opacity: .9 }
-      100% { transform: translate(0,0) scale(1); opacity: .35 }
+      0% {
+        transform: translate(0, 0) scale(1);
+        opacity: .4
+      }
+
+      50% {
+        transform: translate(var(--dx), var(--dy)) scale(1.08);
+        opacity: .95
+      }
+
+      100% {
+        transform: translate(0, 0) scale(1);
+        opacity: .4
+      }
     }
 
-    /* Pilha de imagens/cards */
-    .stack { transform-style: preserve-3d; perspective: 1000px; }
-    .stack-card {
-      transition: transform .5s ease, box-shadow .3s ease, filter .3s ease;
-      transform: rotate(var(--r, 0deg)) translateZ(var(--z, 0px));
-    }
-    .stack-card:hover { transform: rotate(var(--r, 0deg)) translateZ(32px) scale(1.02); filter: saturate(1.05); }
-    .stack:hover .stack-card:nth-child(2) { transform: rotate(-3deg) translateY(-6px) translateX(-6px) translateZ(18px); }
-    .stack:hover .stack-card:nth-child(3) { transform: rotate(4deg) translateY(6px) translateX(6px) translateZ(12px); }
 
-    /* Elementos “blocos de código” */
+
+    /* Elementos "blocos de código" */
     .code-block {
-      --b:#e5e7eb; --c:#111827;
-      box-shadow: 0 8px 20px rgba(17,24,39,.06), inset 0 0 0 1px var(--b);
+      box-shadow: 0 10px 25px rgba(17, 24, 39, .08), inset 0 0 0 1px rgba(229, 231, 235, 0.8);
       background:
-        radial-gradient(circle at 12px 12px, #22d3ee 2px, transparent 3px) top 10px left 10px / 26px 26px no-repeat,
-        radial-gradient(circle at 12px 12px, #fb7185 2px, transparent 3px) top 10px left 36px / 26px 26px no-repeat,
-        radial-gradient(circle at 12px 12px, #a78bfa 2px, transparent 3px) top 10px left 62px / 26px 26px no-repeat,
+        radial-gradient(circle at 14px 14px, #22d3ee 2.5px, transparent 3px) top 12px left 12px / 28px 28px no-repeat,
+        radial-gradient(circle at 14px 14px, #fb7185 2.5px, transparent 3px) top 12px left 40px / 28px 28px no-repeat,
+        radial-gradient(circle at 14px 14px, #a78bfa 2.5px, transparent 3px) top 12px left 68px / 28px 28px no-repeat,
         #fff;
+      transition: all 0.3s ease;
+    }
+
+    .code-block:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 12px 30px rgba(17, 24, 39, .12), inset 0 0 0 1px rgba(99, 102, 241, 0.3);
     }
 
     /* Micro animações */
-    .wiggle { animation: wiggle 1.4s ease-in-out infinite; }
-    @keyframes wiggle { 0%,100%{ transform: rotate(-2deg) } 50%{ transform: rotate(2deg) } }
+    .wiggle {
+      animation: wiggle 1.6s ease-in-out infinite;
+    }
+
+    @keyframes wiggle {
+
+      0%,
+      100% {
+        transform: rotate(-2.5deg)
+      }
+
+      50% {
+        transform: rotate(2.5deg)
+      }
+    }
+
+    .float-slow {
+      animation: float-slow 3s ease-in-out infinite;
+    }
+
+    @keyframes float-slow {
+
+      0%,
+      100% {
+        transform: translateY(0px);
+      }
+
+      50% {
+        transform: translateY(-10px);
+      }
+    }
 
     /* Respeita redução de movimento */
     @media (prefers-reduced-motion: reduce) {
-      .particle, .wiggle, .stack-card, .stack:hover .stack-card { animation: none !important; transition: none !important; }
+
+      .particle,
+      .wiggle,
+      .float-slow,
+      .gallery-item,
+      .gallery-item img {
+        animation: none !important;
+        transition: none !important;
+      }
     }
   </style>
 </head>
@@ -93,19 +147,24 @@
   <div id="particles" aria-hidden="true" class="pointer-events-none fixed inset-0 -z-10"></div>
 
   <!-- Header -->
-  <header class="max-w-7xl mx-auto px-6 pt-6">
+  <header class="max-w-7xl mx-auto px-6 lg:px-8 pt-8">
     <div class="flex items-center justify-between">
-      <div class="flex items-center gap-3">
-        <div class="w-10 h-10 rounded-2xl bg-indigo-500/90 grid place-items-center text-white drop-shadow-glow">
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M7 10h10M9 14h6" stroke="white" stroke-width="2" stroke-linecap="round"/><rect x="3" y="4" width="18" height="16" rx="5" stroke="white" stroke-width="2"/></svg>
+      <div class="flex items-center gap-4">
+        <div
+          class="w-12 h-12 rounded-2xl bg-gradient-to-br from-indigo-500 to-indigo-600 grid place-items-center text-white drop-shadow-glow">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+            <path d="M7 10h10M9 14h6" stroke="white" stroke-width="2.5" stroke-linecap="round" />
+            <rect x="3" y="4" width="18" height="16" rx="5" stroke="white" stroke-width="2.5" />
+          </svg>
         </div>
         <div>
-          <p class="font-display text-lg leading-5 text-slate-900">Legacy Educação</p>
-          <p class="text-xs uppercase tracking-widest text-indigo-600">Plataforma Inforkids</p>
+          <p class="font-display text-xl leading-5 text-slate-900">Legacy Educação</p>
+          <p class="text-xs uppercase tracking-widest text-indigo-600 font-semibold">Plataforma Inforkids</p>
         </div>
       </div>
 
-      <span class="inline-flex items-center gap-2 rounded-full bg-yellow-100 text-yellow-800 px-3 py-1 text-xs font-semibold">
+      <span
+        class="inline-flex items-center gap-2 rounded-full bg-yellow-100 text-yellow-800 px-4 py-2 text-sm font-semibold shadow-sm">
         <span class="w-2 h-2 rounded-full bg-yellow-400 animate-pulse"></span>
         Em construção
       </span>
@@ -113,174 +172,219 @@
   </header>
 
   <!-- Hero -->
-  <main class="max-w-7xl mx-auto px-6 py-12 lg:py-20">
-    <section class="grid lg:grid-cols-2 gap-10 items-center">
-      <!-- Texto / Copy -->
-      <div class="relative">
-        <span class="inline-flex items-center gap-2 rounded-full bg-indigo-100 text-indigo-700 px-3 py-1 text-xs font-semibold mb-4">
-          <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none"><path d="M4 12h5l2 3 3-6 2 3h4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-          Aprender fazendo • Robótica • Programação em blocos
-        </span>
+  <main class="max-w-7xl mx-auto px-6 lg:px-8">
 
-        <h1 class="font-display text-4xl sm:text-5xl lg:text-6xl text-slate-900 leading-tight">
-          Autonomia para mentes curiosas.<br>
-          <span class="text-transparent bg-clip-text bg-gradient-to-r from-indigo-600 via-fuchsia-600 to-orange-500">Tecnologia que brinca e ensina.</span>
-        </h1>
+    <!-- Hero com Galeria -->
+    <section class="py-16 lg:py-24">
+      <div class="grid lg:grid-cols-[3fr_2fr] gap-12 lg:gap-16 items-center">
+        <!-- Conteúdo Principal (60%) -->
+        <div>
+          <span
+            class="inline-flex items-center gap-2 rounded-full bg-indigo-100 text-indigo-700 px-4 py-2 text-sm font-semibold mb-6 shadow-sm">
+            <svg class="w-5 h-5" viewBox="0 0 24 24" fill="none">
+              <path d="M4 12h5l2 3 3-6 2 3h4" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                stroke-linejoin="round" />
+            </svg>
+            Aprender fazendo • Robótica • Programação em blocos
+          </span>
 
-        <p class="mt-5 text-lg leading-relaxed">
-          A <strong>Legacy Educação</strong> na <strong>Inforkids</strong> combina informática criativa, robótica e programação
-          por <em>blocos visuais</em> para transformar curiosidade em projetos do mundo real.
-          Nossa missão é desenvolver autonomia, pensamento computacional e colaboração — de forma didática, colorida e divertida.
-        </p>
+          <h1 class="font-display font-bold text-4xl sm:text-5xl lg:text-6xl text-slate-900 leading-[1.05] mb-6">
+            <span class="font-black">Autonomia</span> para mentes curiosas.
+            <span
+              class="block mt-3 font-black text-transparent bg-clip-text bg-gradient-to-r from-indigo-600 via-fuchsia-600 to-orange-500">
+              Tecnologia que brinca e ensina.
+            </span>
+          </h1>
 
-        <div class="mt-6 grid sm:grid-cols-[auto_1fr] gap-3 items-center">
-          <div class="wiggle inline-flex items-center gap-2 rounded-xl bg-orange-100 text-orange-800 px-3 py-1 text-sm font-semibold shadow-sm">
-            <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none"><path d="M12 2v6m0 8v6M2 12h6m8 0h6" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
-            Voltamos em breve com novidades!
+          <p class="text-lg lg:text-xl leading-relaxed text-slate-600 mb-8">
+            A <strong class="text-slate-900 font-bold">Legacy Educação</strong> na <strong
+              class="text-slate-900 font-bold">Inforkids</strong> combina informática criativa, robótica e programação
+            por <em>blocos visuais</em> para transformar curiosidade em projetos do mundo real.
+          </p>
+
+          <div
+            class="wiggle inline-flex items-center gap-3 rounded-2xl bg-gradient-to-r from-orange-100 to-amber-100 text-orange-900 px-6 py-4 text-base font-semibold shadow-lg mb-8">
+            <svg class="w-6 h-6" viewBox="0 0 24 24" fill="none">
+              <path d="M12 2v6m0 8v6M2 12h6m8 0h6" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" />
+            </svg>
+            Voltamos em breve com novidades incríveis!
           </div>
 
-          <!-- Captura de e-mail (local only) -->
-          <!-- <form id="notify" class="flex rounded-2xl overflow-hidden ring-1 ring-slate-200 bg-white shadow-sm focus-within:ring-indigo-400 transition">
-            <input required name="email" type="email" placeholder="Seu e‑mail para receber o aviso"
-                   class="w-full px-4 py-3 outline-none placeholder-slate-400 text-slate-700" />
-            <button class="px-4 py-3 bg-indigo-600 text-white font-semibold hover:bg-indigo-700 transition">
-              Avisar-me
-            </button>
-          </form> -->
+          <!-- Pílulas -->
+          <div class="flex flex-wrap gap-3">
+            <span
+              class="px-4 py-2 rounded-full bg-fuchsia-100 text-fuchsia-800 text-sm font-semibold shadow-sm">Metodologia
+              lúdica</span>
+            <span class="px-4 py-2 rounded-full bg-cyan-100 text-cyan-800 text-sm font-semibold shadow-sm">Maker &amp;
+              projetos</span>
+            <span class="px-4 py-2 rounded-full bg-lime-100 text-lime-800 text-sm font-semibold shadow-sm">Aprender com
+              autonomia</span>
+            <span class="px-4 py-2 rounded-full bg-amber-100 text-amber-800 text-sm font-semibold shadow-sm">Pensamento
+              lógico</span>
+          </div>
         </div>
 
-        <!-- “Algoritmo” em blocos -->
-        <div class="mt-10 flex flex-wrap items-center gap-2">
-          <div class="code-block rounded-xl px-4 py-3 text-sm font-semibold text-slate-800">Explorar</div>
-          <div class="text-slate-400">→</div>
-          <div class="code-block rounded-xl px-4 py-3 text-sm font-semibold text-slate-800">Montar blocos</div>
-          <div class="text-slate-400">→</div>
-          <div class="code-block rounded-xl px-4 py-3 text-sm font-semibold text-slate-800">Testar &amp; depurar</div>
-          <div class="text-slate-400">→</div>
-          <div class="code-block rounded-xl px-4 py-3 text-sm font-semibold text-slate-800">Robô em ação</div>
-          <div class="text-slate-400">→</div>
-          <div class="code-block rounded-xl px-4 py-3 text-sm font-semibold text-slate-800">Compartilhar</div>
-        </div>
+        <!-- Galeria de Imagens Hero (40%) -->
+        <div class="relative">
+          <div
+            class="absolute -inset-6 -z-10 opacity-40 blur-3xl bg-gradient-to-tr from-indigo-200 via-fuchsia-200 to-amber-200 rounded-[3rem]">
+          </div>
 
-        <!-- Pílulas -->
-        <div class="mt-6 flex flex-wrap gap-2">
-          <span class="px-3 py-1 rounded-full bg-fuchsia-100 text-fuchsia-800 text-xs font-semibold">Metodologia lúdica</span>
-          <span class="px-3 py-1 rounded-full bg-cyan-100 text-cyan-800 text-xs font-semibold">Maker &amp; projetos</span>
-          <span class="px-3 py-1 rounded-full bg-lime-100 text-lime-800 text-xs font-semibold">Aprender com autonomia</span>
-          <span class="px-3 py-1 rounded-full bg-amber-100 text-amber-800 text-xs font-semibold">Pensamento lógico</span>
+          <div class="grid grid-cols-2 gap-4">
+            <!-- Imagem principal maior -->
+            <div
+              class="col-span-2 relative overflow-hidden rounded-3xl shadow-2xl ring-1 ring-slate-200/50 aspect-[4/3]">
+              <img src="boy.png" alt="Menino aprendendo programação"
+                class="w-full h-full object-cover transition-transform duration-500 hover:scale-110" />
+              <div class="absolute inset-0 bg-gradient-to-t from-slate-900/60 via-transparent to-transparent"></div>
+              <div class="absolute bottom-0 left-0 right-0 p-6 text-white">
+                <h3 class="font-display font-bold text-lg mb-1">Programação criativa</h3>
+                <p class="text-sm text-white/90">Desenvolvendo o pensamento computacional</p>
+              </div>
+            </div>
+
+            <!-- Duas imagens menores -->
+            <div class="relative overflow-hidden rounded-2xl shadow-xl ring-1 ring-slate-200/50 aspect-square">
+              <img src="girl.png" alt="Menina aprendendo robótica"
+                class="w-full h-full object-cover transition-transform duration-500 hover:scale-110" />
+              <div class="absolute inset-0 bg-gradient-to-t from-fuchsia-900/50 via-transparent to-transparent"></div>
+              <div class="absolute bottom-0 left-0 right-0 p-3 text-white">
+                <h3 class="font-display font-bold text-sm mb-1">Robótica educacional</h3>
+              </div>
+            </div>
+
+            <div class="relative overflow-hidden rounded-2xl shadow-xl ring-1 ring-slate-200/50 aspect-square">
+              <img src="robots.png" alt="Projetos de robótica"
+                class="w-full h-full object-cover transition-transform duration-500 hover:scale-110" />
+              <div class="absolute inset-0 bg-gradient-to-t from-indigo-900/50 via-transparent to-transparent"></div>
+              <div class="absolute bottom-0 left-0 right-0 p-3 text-white">
+                <h3 class="font-display font-bold text-sm mb-1">Projetos maker</h3>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
+    </section>
+    </div>
+    </div>
+    </section>
 
-      <!-- Ilustração / pilhas -->
-      <div class="relative">
-        <div class="absolute -inset-6 -z-10 opacity-60 blur-2xl bg-gradient-to-tr from-indigo-200 via-fuchsia-200 to-amber-200 rounded-[2rem]"></div>
 
-        <div class="stack grid place-items-center gap-4">
-          <!-- Card 1 -->
-          <figure class="stack-card relative w-full max-w-xl rounded-3xl p-6 bg-white shadow-xl ring-1 ring-slate-200" style="--r:-2deg; --z:22px">
-            <div class="flex items-center gap-4">
-              <div class="w-14 h-14 rounded-2xl bg-indigo-500/90 grid place-items-center text-white drop-shadow-glow">
-                <!-- mascote simples -->
-                <svg width="28" height="28" viewBox="0 0 24 24" fill="none">
-                  <circle cx="12" cy="12" r="8" fill="white" opacity=".25"/>
-                  <circle cx="12" cy="12" r="6" stroke="white" stroke-width="2"/>
-                  <path d="M9 13c1.2 1.2 4.8 1.2 6 0" stroke="white" stroke-width="2" stroke-linecap="round"/>
-                  <circle cx="9" cy="10" r="1" fill="white"/><circle cx="15" cy="10" r="1" fill="white"/>
-                </svg>
-              </div>
-              <div>
-                <figcaption class="font-display text-xl text-slate-900">Laboratórios criativos</figcaption>
-                <p class="text-sm text-slate-500">Ambientes para experimentar, errar, ajustar e vencer.</p>
-              </div>
-            </div>
-            <div class="mt-4 grid grid-cols-3 gap-3">
-              <!-- imagens dos alunos -->
-              <img src="boy.png" alt="Menino aprendendo" class="aspect-[4/3] rounded-2xl object-cover ring-1 ring-indigo-100 shadow-sm">
-              <img src="girl.png" alt="Menina aprendendo" class="aspect-[4/3] rounded-2xl object-cover ring-1 ring-fuchsia-100 shadow-sm">
-              <img src="robots.png" alt="Menina aprendendo" class="aspect-[4/3] rounded-2xl object-cover ring-1 ring-amber-100 shadow-sm">
-             \
-            </div>
-          </figure>
 
-          <!-- Card 2 -->
-          <figure class="stack-card relative w-full max-w-xl rounded-3xl p-6 bg-white shadow-xl ring-1 ring-slate-200" style="--r:3deg; --z:14px">
-            <figcaption class="font-display text-xl text-slate-900 mb-2">Programação em blocos</figcaption>
-            <div class="grid grid-cols-5 gap-2">
-              <div class="rounded-xl px-3 py-2 text-xs font-semibold text-white bg-indigo-500/90 shadow">iniciar</div>
-              <div class="rounded-xl px-3 py-2 text-xs font-semibold text-indigo-800 bg-indigo-100 shadow-inner">mover 10</div>
-              <div class="rounded-xl px-3 py-2 text-xs font-semibold text-fuchsia-800 bg-fuchsia-100 shadow-inner">virar 15°</div>
-              <div class="rounded-xl px-3 py-2 text-xs font-semibold text-emerald-800 bg-emerald-100 shadow-inner">repetir 5×</div>
-              <div class="rounded-xl px-3 py-2 text-xs font-semibold text-orange-800 bg-orange-100 shadow-inner">tocar som</div>
-            </div>
-          </figure>
+    <!-- "Algoritmo" em blocos -->
+    <section class="pb-20">
+      <div class="mb-10">
+        <h2 class="font-display font-bold text-3xl lg:text-4xl text-slate-900 mb-4">Nossa metodologia</h2>
+        <p class="text-lg text-slate-600 max-w-2xl">
+          Um processo estruturado que guia o aprendizado de forma natural e divertida.
+        </p>
+      </div>
 
-          <!-- Card 3 -->
-          <figure class="stack-card relative w-full max-w-xl rounded-3xl p-6 bg-white shadow-xl ring-1 ring-slate-200" style="--r:-1deg; --z:8px">
-            <figcaption class="font-display text-xl text-slate-900">Robótica amigável</figcaption>
-            <p class="text-sm text-slate-500">Motores, sensores e muita imaginação guiada por algoritmos simples.</p>
-            <div class="mt-3 flex gap-3">
-              <div class="h-24 w-24 rounded-2xl bg-gradient-to-tr from-emerald-100 to-emerald-50 ring-1 ring-emerald-100"></div>
-              <div class="h-24 w-24 rounded-2xl bg-gradient-to-tr from-cyan-100 to-cyan-50 ring-1 ring-cyan-100"></div>
-              <div class="h-24 w-24 rounded-2xl bg-gradient-to-tr from-rose-100 to-rose-50 ring-1 ring-rose-100"></div>
-            </div>
-          </figure>
-        </div>
+      <div class="flex flex-wrap items-center gap-4">
+        <div class="code-block rounded-2xl px-6 py-4 text-base font-semibold text-slate-800">Explorar</div>
+        <div class="text-slate-400 text-2xl">→</div>
+        <div class="code-block rounded-2xl px-6 py-4 text-base font-semibold text-slate-800">Montar blocos</div>
+        <div class="text-slate-400 text-2xl">→</div>
+        <div class="code-block rounded-2xl px-6 py-4 text-base font-semibold text-slate-800">Testar &amp; depurar</div>
+        <div class="text-slate-400 text-2xl">→</div>
+        <div class="code-block rounded-2xl px-6 py-4 text-base font-semibold text-slate-800">Robô em ação</div>
+        <div class="text-slate-400 text-2xl">→</div>
+        <div
+          class="code-block rounded-2xl px-6 py-4 text-base font-semibold text-slate-800 bg-gradient-to-r from-indigo-50 to-fuchsia-50">
+          Compartilhar</div>
       </div>
     </section>
 
     <!-- Pilares -->
-    <section class="mt-16 lg:mt-24">
-      <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-5">
-        <div class="rounded-3xl p-6 bg-white/80 backdrop-blur shadow ring-1 ring-slate-200 hover:-translate-y-1 transition">
-          <div class="w-10 h-10 rounded-xl grid place-items-center bg-indigo-100 text-indigo-700 mb-3">
-            <svg class="w-5 h-5" viewBox="0 0 24 24" fill="none"><path d="M12 3l7 4v10l-7 4-7-4V7l7-4z" stroke="currentColor" stroke-width="2"/><path d="M9 12h6" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+    <section class="pb-24">
+      <div class="mb-12">
+        <h2 class="font-display font-bold text-3xl lg:text-4xl text-slate-900 mb-4">Nossos pilares educacionais</h2>
+        <p class="text-lg text-slate-600 max-w-2xl">
+          Valores que guiam cada atividade e projeto desenvolvido na Inforkids.
+        </p>
+      </div>
+
+      <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
+        <div
+          class="rounded-3xl p-8 bg-white/90 backdrop-blur shadow-lg ring-1 ring-slate-200 hover:-translate-y-2 hover:shadow-xl transition-all duration-300">
+          <div
+            class="w-14 h-14 rounded-2xl grid place-items-center bg-gradient-to-br from-indigo-100 to-indigo-200 text-indigo-700 mb-5 float-slow">
+            <svg class="w-7 h-7" viewBox="0 0 24 24" fill="none">
+              <path d="M12 3l7 4v10l-7 4-7-4V7l7-4z" stroke="currentColor" stroke-width="2.5" />
+              <path d="M9 12h6" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" />
+            </svg>
           </div>
-          <h3 class="font-display text-lg text-slate-900">Autonomia</h3>
-          <p class="text-sm mt-1 text-slate-600">Trilhas guiadas para a criança aprender a aprender.</p>
+          <h3 class="font-display font-bold text-xl text-slate-900 mb-2">Autonomia</h3>
+          <p class="text-base text-slate-600 leading-relaxed">Trilhas guiadas para a criança aprender a aprender e
+            desenvolver independência.</p>
         </div>
-        <div class="rounded-3xl p-6 bg-white/80 backdrop-blur shadow ring-1 ring-slate-200 hover:-translate-y-1 transition">
-          <div class="w-10 h-10 rounded-xl grid place-items-center bg-fuchsia-100 text-fuchsia-700 mb-3">
-            <svg class="w-5 h-5" viewBox="0 0 24 24" fill="none"><path d="M4 7h16M7 12h10M9 17h6" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+
+        <div
+          class="rounded-3xl p-8 bg-white/90 backdrop-blur shadow-lg ring-1 ring-slate-200 hover:-translate-y-2 hover:shadow-xl transition-all duration-300">
+          <div
+            class="w-14 h-14 rounded-2xl grid place-items-center bg-gradient-to-br from-fuchsia-100 to-fuchsia-200 text-fuchsia-700 mb-5 float-slow"
+            style="animation-delay: 0.2s">
+            <svg class="w-7 h-7" viewBox="0 0 24 24" fill="none">
+              <path d="M4 7h16M7 12h10M9 17h6" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" />
+            </svg>
           </div>
-          <h3 class="font-display text-lg text-slate-900">Didática leve</h3>
-          <p class="text-sm mt-1 text-slate-600">Conteúdos interativos e divertidos.</p>
+          <h3 class="font-display font-bold text-xl text-slate-900 mb-2">Didática leve</h3>
+          <p class="text-base text-slate-600 leading-relaxed">Conteúdos interativos, coloridos e divertidos que
+            facilitam o aprendizado.</p>
         </div>
-        <div class="rounded-3xl p-6 bg-white/80 backdrop-blur shadow ring-1 ring-slate-200 hover:-translate-y-1 transition">
-          <div class="w-10 h-10 rounded-xl grid place-items-center bg-emerald-100 text-emerald-700 mb-3">
-            <svg class="w-5 h-5" viewBox="0 0 24 24" fill="none"><path d="M8 21V9l4-6 4 6v12" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+
+        <div
+          class="rounded-3xl p-8 bg-white/90 backdrop-blur shadow-lg ring-1 ring-slate-200 hover:-translate-y-2 hover:shadow-xl transition-all duration-300">
+          <div
+            class="w-14 h-14 rounded-2xl grid place-items-center bg-gradient-to-br from-emerald-100 to-emerald-200 text-emerald-700 mb-5 float-slow"
+            style="animation-delay: 0.4s">
+            <svg class="w-7 h-7" viewBox="0 0 24 24" fill="none">
+              <path d="M8 21V9l4-6 4 6v12" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" />
+            </svg>
           </div>
-          <h3 class="font-display text-lg text-slate-900">Projeto mão na massa</h3>
-          <p class="text-sm mt-1 text-slate-600">Do algoritmo à execução com kits de robótica.</p>
+          <h3 class="font-display font-bold text-xl text-slate-900 mb-2">Mão na massa</h3>
+          <p class="text-base text-slate-600 leading-relaxed">Do algoritmo à execução com kits de robótica e projetos
+            reais.</p>
         </div>
-        <div class="rounded-3xl p-6 bg-white/80 backdrop-blur shadow ring-1 ring-slate-200 hover:-translate-y-1 transition">
-          <div class="w-10 h-10 rounded-xl grid place-items-center bg-amber-100 text-amber-700 mb-3">
-            <svg class="w-5 h-5" viewBox="0 0 24 24" fill="none"><path d="M12 6v12M6 12h12" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+
+        <div
+          class="rounded-3xl p-8 bg-white/90 backdrop-blur shadow-lg ring-1 ring-slate-200 hover:-translate-y-2 hover:shadow-xl transition-all duration-300">
+          <div
+            class="w-14 h-14 rounded-2xl grid place-items-center bg-gradient-to-br from-amber-100 to-amber-200 text-amber-700 mb-5 float-slow"
+            style="animation-delay: 0.6s">
+            <svg class="w-7 h-7" viewBox="0 0 24 24" fill="none">
+              <path d="M12 6v12M6 12h12" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" />
+            </svg>
           </div>
-          <h3 class="font-display text-lg text-slate-900">Tecnologia humana</h3>
-          <p class="text-sm mt-1 text-slate-600">Aprender com respeito e ética ao ritmo e muita diversão.</p>
+          <h3 class="font-display font-bold text-xl text-slate-900 mb-2">Tecnologia humana</h3>
+          <p class="text-base text-slate-600 leading-relaxed">Aprender com respeito, ética e muita diversão no processo.
+          </p>
         </div>
       </div>
     </section>
 
-    <!-- Rodapé curto -->
-    <footer class="mt-16 lg:mt-24">
-      <div class="rounded-3xl p-6 md:p-8 bg-gradient-to-r from-indigo-50 via-violet-50 to-orange-50 ring-1 ring-slate-200">
-        <div class="md:flex md:items-center md:justify-between">
-          <div>
-            <h4 class="font-display text-2xl text-slate-900">Legacy Educação — Inforkids</h4>
-            <p class="mt-1 text-sm text-slate-600">
+    <!-- Rodapé -->
+    <footer class="pb-12">
+      <div
+        class="rounded-3xl p-8 lg:p-12 bg-gradient-to-r from-indigo-50 via-violet-50 to-orange-50 ring-1 ring-slate-200 shadow-lg">
+        <div class="lg:flex lg:items-center lg:justify-between">
+          <div class="max-w-2xl">
+            <h4 class="font-display font-bold text-3xl text-slate-900 mb-3">Legacy Educação — Inforkids</h4>
+            <p class="text-base text-slate-600 leading-relaxed">
               Estamos ajustando os últimos detalhes para abrir novas turmas e lançar experiências
-              interativas inéditas. <strong>Fique de olho!</strong>
+              interativas inéditas. <strong class="text-slate-900">Fique de olho!</strong>
             </p>
           </div>
-          <div class="mt-4 md:mt-0 flex items-center gap-3">
-            <span class="px-3 py-1 rounded-full bg-slate-900 text-white text-xs font-semibold">Em construção</span>
-            <a href="#" class="text-indigo-600 font-semibold hover:underline">Política de privacidade</a>
+          <div class="mt-6 lg:mt-0 flex flex-col sm:flex-row items-start sm:items-center gap-4">
+            <span class="px-4 py-2 rounded-full bg-slate-900 text-white text-sm font-semibold shadow-md">Em
+              construção</span>
+            <a href="#" class="text-indigo-600 font-semibold hover:text-indigo-700 hover:underline transition">Política
+              de privacidade</a>
           </div>
         </div>
       </div>
 
-      <p class="text-center text-xs text-slate-400 mt-6">
+      <p class="text-center text-sm text-slate-400 mt-8">
         © <span id="year"></span> Legacy Educação • Inforkids. Todos os direitos reservados.
       </p>
     </footer>
@@ -293,14 +397,14 @@
     // Partículas geradas dinamicamente
     (function () {
       const wrap = document.getElementById('particles');
-      const colors = ['#6366F1','#A78BFA','#F59E0B','#10B981','#06B6D4','#F472B6'];
-      const count = Math.min(80, Math.floor(window.innerWidth / 16));
+      const colors = ['#6366F1', '#A78BFA', '#F59E0B', '#10B981', '#06B6D4', '#F472B6'];
+      const count = Math.min(90, Math.floor(window.innerWidth / 14));
 
       for (let i = 0; i < count; i++) {
         const s = document.createElement('span');
-        const size = Math.random() * 6 + 3; // 3–9px
+        const size = Math.random() * 7 + 3; // 3–10px
         const x = Math.random() * 100, y = Math.random() * 100;
-        const dx = (Math.random() * 60 - 30) + 'px', dy = (Math.random() * 60 - 30) + 'px';
+        const dx = (Math.random() * 70 - 35) + 'px', dy = (Math.random() * 70 - 35) + 'px';
 
         s.className = 'particle';
         s.style.setProperty('--size', size + 'px');
@@ -308,32 +412,13 @@
         s.style.setProperty('--y', y + '%');
         s.style.setProperty('--dx', dx);
         s.style.setProperty('--dy', dy);
-        s.style.setProperty('--duration', (8 + Math.random() * 8) + 's');
-        s.style.setProperty('--delay', (Math.random() * 10) + 's');
-        s.style.setProperty('--color', colors[Math.floor(Math.random()*colors.length)]);
+        s.style.setProperty('--duration', (9 + Math.random() * 9) + 's');
+        s.style.setProperty('--delay', (Math.random() * 12) + 's');
+        s.style.setProperty('--color', colors[Math.floor(Math.random() * colors.length)]);
         wrap.appendChild(s);
       }
     })();
-
-    // Captura de e-mail: guarda localmente e mostra feedback
-    document.getElementById('notify').addEventListener('submit', function (e) {
-      e.preventDefault();
-      const email = new FormData(this).get('email') || '';
-      if (email) {
-        try {
-          const key = 'legacy-inforkids-waitlist';
-          const list = JSON.parse(localStorage.getItem(key) || '[]');
-          if (!list.includes(email)) list.push(email);
-          localStorage.setItem(key, JSON.stringify(list));
-        } catch {}
-        this.innerHTML = `
-          <div class="flex items-center gap-2 px-4 py-3">
-            <svg class="w-5 h-5 text-emerald-600" viewBox="0 0 24 24" fill="none"><path d="M5 12l4 4L19 7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-            <span class="font-medium text-slate-700">Obrigado! Vamos te avisar assim que estivermos prontos 🚀</span>
-          </div>`;
-      }
-    }, { passive: false });
   </script>
 </body>
-</html>
 
+</html>
